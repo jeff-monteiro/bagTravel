@@ -24,6 +24,8 @@ formEvent = () =>{
             itemAtual.id = exist.id
             
             updateElement(itemAtual)
+
+            items[exist.id] = itemAtual
         }else{
             itemAtual.id = items.length
 
