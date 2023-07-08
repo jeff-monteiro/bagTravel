@@ -19,10 +19,19 @@ formEvent = () =>{
             quantidade: quantidade.value
         }
 
-        createElement(itemAtual)
+        const exist = items.find(element => element.nome === nome.value)
+        if(exist){
+            itemAtual.id = exist.id
+            
+            updateElement(itemAtual)
+        }else{
+            itemAtual.id = items.length
+
+            createElement(itemAtual)
     
-        items.push(itemAtual)
-    
+            items.push(itemAtual)
+        }
+
         localStorage.setItem("items", JSON.stringify(items))
 
         nome.value = ""
@@ -37,9 +46,14 @@ function createElement(item) {
 
     const itemNumber = document.createElement("strong")
     itemNumber.innerHTML = item.quantidade
+    itemNumber.dataset.id = item.id
     novoItem.appendChild(itemNumber)
 
     novoItem.innerHTML += item.nome
 
     list.appendChild(novoItem)
+}
+
+function updateElement(item){
+    console.log(document.querySelector("[data-id='"+item.id+"']"))
 }
