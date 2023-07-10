@@ -57,5 +57,5 @@ function createElement(item) {
 }
 
 function updateElement(item){
-    console.log(document.querySelector("[data-id='"+item.id+"']"))
+    //console.log(document.querySelector("[data-id='"+item.id+"']"))
 }
