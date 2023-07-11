@@ -25,9 +25,9 @@ formEvent = () =>{
             
             updateElement(itemAtual)
 
-            items[exist.id] = itemAtual
+            items[items.findIndex(element => element.id === exist.id)] = itemAtual
         }else{
-            itemAtual.id = items.length
+            itemAtual.id = items[items.length -1] ? (items[items.length -1]).id +1 : 0
 
             createElement(itemAtual)
     
@@ -53,9 +53,30 @@ function createElement(item) {
 
     novoItem.innerHTML += item.nome
 
+    novoItem.appendChild(deleteButton(item.id))
+
     list.appendChild(novoItem)
 }
 
 function updateElement(item){
-    document.querySelector("[data-id='"+item.id+"']")
+    document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade
+}
+
+function deleteButton(id){
+    const elementButton = document.createElement("button")
+    elementButton.innerText = "X"
+
+    elementButton.addEventListener("click", function() {
+        deleteElement(this.parentNode, id)
+    })
+
+    return elementButton
+}
+
+function deleteElement(tag, id){
+    tag.remove()
+
+    items.splice(items.findIndex(element => element.id === id), 1)
+
+    localStorage.setItem("items", JSON.stringify(items))
 }
