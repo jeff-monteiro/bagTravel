@@ -2,8 +2,6 @@ const form = document.getElementById("novoItem")
 const list = document.getElementById("lista")
 const items = JSON.parse(localStorage.getItem('items')) || []
 
-console.log(items)
-
 items.forEach( (element) => {
     createElement(element)
 })
