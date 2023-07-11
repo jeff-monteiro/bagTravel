@@ -20,6 +20,7 @@ formEvent = () =>{
         }
 
         const exist = items.find(element => element.nome === nome.value)
+        console.log(exist)
         if(exist){
             itemAtual.id = exist.id
             
